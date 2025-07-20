@@ -1,0 +1,28 @@
+<%@page import="javax.management.relation.Role"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%
+	HttpSession Adminsession = request.getSession(false);
+	if (session == null || !"admin".equals(session.getAttribute("role"))) {
+		response.sendRedirect("Login.jsp");
+	}
+	%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Home</title>
+</head>
+<body>
+	<h1>Admiin Dashboard Library Management</h1>
+	<h3> <%=session.getAttribute("username") %>welcome </h3>
+<ul>
+<li><a href="addBook.jsp">Add Book</a></li>
+<li><a href="viewBooks.jsp">View Books</a></li>
+<li><a href="assignBook.jsp">Assign Book</a></li>
+<li><a href="returnBook.jsp">Return Book</a></li>
+
+</ul>
+	
+</body>
+</html>

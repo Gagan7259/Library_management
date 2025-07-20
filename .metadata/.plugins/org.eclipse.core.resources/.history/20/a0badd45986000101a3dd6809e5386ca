@@ -1,0 +1,38 @@
+package com.servlet;
+
+import java.io.IOException;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletRequest;
+
+@WebFilter("/aAlien")
+public class IdFIlter implements Filter {
+
+	public void destroy() {
+
+	}
+
+	public void doFilter(ServletRequest request, ServletResponse result, FilterChain chain)
+			throws IOException, ServletException {
+		// TODO Auto-generated method stub
+
+		HttpServletRequest req = (HttpServletRequest) request;
+		int aidd = Integer.parseInt(request.getParameter("aid"));
+
+		if (aidd > 1) {
+			chain.doFilter(request, result);
+		}
+	}
+
+	public void init(ServletConfig config) {
+
+	}
+
+}

@@ -1,0 +1,33 @@
+package com.servletss;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.print.DocFlavor.STRING;
+
+import com.connection.DbConnection;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class AssignBooksSevlet extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String userID=req.getParameter("userid");
+		String bookID=req.getParameter("bookid");
+		String Title=req.getParameter("title");
+		String Author=req.getParameter("author");
+		String assignDate=req.getParameter("assignDate");
+		String returnDate=req.getParameter("retunDate");
+
+		
+
+}

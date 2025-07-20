@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="Css/style.css">
+
+</head>
+<body>
+<h1>User Dashboard Library Management</h1>
+	<h3>
+		<%=session.getAttribute("username")%>
+		welcome
+	</h3>
+	<ul>
+		<li><a href="viewBooks.jsp">View Books</a></li>
+		<li><a href="returnBook.jsp">Return Book</a></li>
+	</ul></body>
+</html>

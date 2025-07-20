@@ -1,0 +1,26 @@
+package com.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/addalien")
+public class MyservLet extends HttpServlet {
+	
+	
+
+	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		int aId=Integer.parseInt(req.getParameter("aid"));
+		String aname=req.getParameter("aname");
+PrintWriter out=res.getWriter();		
+		
+		out.println("Wecome Macgha"+aname);
+	}
+
+}

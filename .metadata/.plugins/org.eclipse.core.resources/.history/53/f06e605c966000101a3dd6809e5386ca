@@ -1,0 +1,30 @@
+package com.servlet;
+
+import java.io.IOException;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+@WebFilter("/addalien")
+public class IdFIlter implements Filter {
+
+	
+	public void   init(FilterConfig config) {
+		
+	}
+	@Override
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
+		System.out.println("In filter");
+		chain.doFilter(req, res);
+	}
+	
+	public void destroy() {
+		
+	}
+
+}

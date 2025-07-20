@@ -1,0 +1,57 @@
+package com.servletss;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.connection.DbConnection;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+public class LoginservleT extends HttpServlet {
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		String username = req.getParameter("uname");
+		String password = req.getParameter("pass");
+		String query = "select * from users where name=? and password=?";
+		PrintWriter out = res.getWriter();
+		try {
+			Connection con = DbConnection.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				String role = rs.getString("role");
+
+				HttpSession session = req.getSession();
+				session.setAttribute("username", username);
+				session.setAttribute("role", role);
+
+				if (role.equalsIgnoreCase("admin")) {
+					res.sendRedirect("adminHome.jsp");
+
+				} else {
+					res.sendRedirect("userHome.jsp");
+
+				}
+			} else {
+				out.println("Login Failed");
+				RequestDispatcher rd = req.getRequestDispatcher("/Login.jsp");
+				rd.forward(req, res);
+			}
+
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

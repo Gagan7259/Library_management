@@ -1,0 +1,20 @@
+<%@page import="javax.management.relation.Role"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Home</title>
+</head>
+<body>
+	<h1>Admiin Panel</h1>
+
+	<%
+	HttpSession Adminsession = request.getSession(false);
+	if (session == null || !"admin".equals(session.getAttribute("role"))) {
+		response.sendRedirect("Login.jsp");
+	}
+	%>
+</body>
+</html>

@@ -1,0 +1,21 @@
+package com.servlets;
+
+import java.io.IOException;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+@WebServlet("/login")
+public class Loginservlet extends HttpServlet{
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		String uname=req.getParameter("uname");
+		String password=req.getParameter("password");
+		
+		if(uname.equals("Gagan") && password.equals("1234567")) {
+			res.sendRedirect("welcome.jsp");
+		}
+	}
+
+}

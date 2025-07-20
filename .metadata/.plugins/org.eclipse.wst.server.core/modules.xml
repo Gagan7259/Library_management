@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.jee.server:Filterserv" serverId="apache-tomcat-11.0.4 at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Library_management" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:JSTLDEMO" serverId="apache-tomcat-11.0.4 at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Demoserv" serverId="Tomcat v10.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:LoginPages" serverId="Tomcat v11.0 Server at localhost (2)"/>
+  <module moduleId="org.eclipse.jst.jee.server:sproject" serverId="Tomcat v10.1 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:Servletjspdemo" serverId="Tomcat v11.0 Server at localhost (2)"/>
+  <module moduleId="org.eclipse.jst.jee.server:Servelet_project" serverId="apache-tomcat-11.0.4 at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:ServletjspDemo" serverId="Tomcat v10.0 Server at localhost"/>
+</modules>

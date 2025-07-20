@@ -1,0 +1,81 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.connection.DbConnection"%>
+<%@page import="java.sql.Connection,java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Assigned Books</title>
+</head>
+<body>
+
+	<h1>Asign Books to user</h1>
+	<form action="AssignBooksSevlet" method="post">
+		UserId : <input type="number" required name="userid"> <br><br>
+		BookId :<input type="number" name="boodid" required><br>
+		Title :<input type="text" name="title" required><br>
+		Authour :<input type="text" name="author" required><br>
+		AssignDate :<input type="date" name="assignDate" required><br>
+		<input type="submit" value="assign Book">
+	</form>
+
+
+
+
+
+
+
+
+
+	<!--ASSIGNED BOOKS FORM  -->
+	<h3>
+		Assignd Books
+		</h1>
+
+		<table>
+			<tr>
+
+				<th>ID</th>
+				<th>UESER ID</th>
+				<th>BOOK ID</th>
+				<th>ASSIGN DATE</th>
+				<th>RETURN DATE</th>
+				<th>STATUS</th>
+			</tr>
+
+
+			<%
+			try {
+				Connection con = DbConnection.getConnection();
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery("select * from assignBooks");
+
+				while (rs.next()) {
+					int id = rs.getInt("id");
+					int userId = rs.getInt("user_id");
+					int bookId = rs.getInt("book_id");
+					Date assigndate = rs.getDate("assign_date");
+					Date returnDate = rs.getDate("return_date");
+					String status = (returnDate != null) ? "Returned" : "Not Returned";
+			%>
+
+			<td><%=id%></td>
+			<td><%=userId%></td>
+			<td><%=bookId%></td>
+			<td><%=assigndate%></td>
+			<td><%=returnDate%></td>
+			<td><%=status%></td>
+
+
+			<%
+			}
+			} catch (Exception e) {
+			e.getStackTrace();
+			}
+			%>
+		</table>
+</body>
+</html>

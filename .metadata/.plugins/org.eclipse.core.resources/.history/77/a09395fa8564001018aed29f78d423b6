@@ -1,0 +1,66 @@
+package com.servletss;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.connection.DbConnection;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class AssignBooksSevlet extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		PrintWriter out = resp.getWriter();
+
+		int userID = Integer.parseInt(req.getParameter("userid"));
+		int bookID = Integer.parseInt(req.getParameter("bookid"));
+		String title = req.getParameter("title");
+		String author = req.getParameter("author");
+		String category = req.getParameter("category");
+		String assignDate = req.getParameter("assigndate");
+		Connection con = null;
+		PreparedStatement insert = null;
+		PreparedStatement checkBook = null;
+		ResultSet rs = null;
+		try {
+			con = DbConnection.getConnection();
+
+//			Check If Book Avilable or not
+			checkBook = con.prepareStatement("select quantity from books where id=?");
+			checkBook.executeQuery();
+			if (rs.next()) {
+				int quantity = rs.getInt("quantity");
+				if (quantity > 0) {
+					insert = con.prepareStatement("insert into assignbooks(user_id,book_id,assign_date)vlaues(?,?,?)");
+					insert.setInt(1, userID);
+					insert.setInt(2, bookID);
+					insert.setDate(3, Date.valueOf(assignDate));
+					insert.executeQuery();
+//					UPDATE BOOK AFTER ASSIGN
+
+					PreparedStatement upadate = con.prepareStatement("update books set quantity=quantity-1 where id=?");
+					upadate.executeQuery();
+					resp.sendRedirect("assignBook.jsp");
+					out.println("Book Assigned successfully");
+				} else {
+					out.println("Book Not avliable");
+				}
+			} else {
+				out.println("Book Not Found");
+			}
+
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+	}
+
+}

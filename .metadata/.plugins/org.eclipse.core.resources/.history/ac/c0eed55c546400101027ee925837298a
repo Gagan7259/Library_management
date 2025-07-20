@@ -1,0 +1,38 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.connection.DbConnection"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Avilable Books</h1>
+	<%
+	Connection con = DbConnection.getConnection();
+	String query = "select * from books";
+	PreparedStatement ps = con.prepareStatement(query);
+	ResultSet re = ps.executeQuery();
+	%>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Avilable</th>
+				<th>Category</th>
+				<th>Quantity</th>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+
+</body>
+</html>
